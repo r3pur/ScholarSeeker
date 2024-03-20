@@ -1,2 +1,10 @@
 flask
 gunicorn
+pandas
+openai
+numpy
+asyncio
+ray
+scikit-learn
+mysql-connector-python
+sqlalchemy
