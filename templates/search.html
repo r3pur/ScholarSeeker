@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" rel="stylesheet">
+    <title>Scholar Seeker</title>
+    <style>
+        :root {
+            --primary: #2563EB;
+            --background: #383838; /* Mid-dark gray background */
+            --text-normal: #000000; /* Black text color */
+            --text-muted: #000000;
+        }
+
+        body, html {
+            background-color: var(--background);
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            background-color: var(--background);
+        }
+        header .logo {
+            height: 1.5rem; /* Adjusted size to match text */
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        header strong {
+            vertical-align: middle;
+        }
+        nav {
+            margin-left: auto;
+        }
+        main {
+            flex: 1;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+        .message-box {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            color: var(--text-normal) !important; /* Ensure message text is black */
+        }
+
+        .message-box.you {
+            background-color: #d1ecf1; /* Background color for 'You' messages */
+        }
+
+        .message-box.scholarseeker {
+            background-color: #d4edda; /* Background color for 'ScholarSeeker' messages */
+        }
+
+        .message-box header {
+            font-weight: bold;
+            padding: 3px 10px; /* Add padding to match message padding */
+            border-radius: 5px 5px 0 0; /* Rounded corners at the top */
+            background-color: transparent; /* Make header background transparent */
+        }
+
+
+        footer {
+            padding: 0.5rem;
+            background: var(--background);
+        }
+        .search-form {
+            display: flex;
+            justify-content: space-between;
+        }
+        .search-form input[type="text"] {
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+        .search-form button {
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+    </style>
+</head>
+<body>
+    <header class="container-fluid">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Scholar Seeker Logo" class="logo">
+        <strong>Scholar Seeker</strong>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#" role="button">About</a></li>
+                <li><a href="/path/to/resume.csv" target="_blank">Resumes CSV</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        <div id="conversation">
+            {% for message in history %}
+                {% if message.get('user') %}
+                    <div class="message-box you">
+                        <header>You</header>
+                        <p>{{ message['user'] }}</p>
+                    </div>
+                {% else %}
+                    <div class="message-box scholarseeker">
+                        <header>ScholarSeeker</header>
+                        <p>{{ message['scholarseeker'] }}</p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </main>
+  <footer class="container">
+        <!-- Query Submission Form -->
+        <form class="search-form" method="POST" style="margin-bottom: 10px;">
+            <input type="text" id="query" name="query" placeholder="Enter query" required>
+            <input type="number" id="num" name="num" placeholder="# of results" required style="margin-right: 10px;">
+            <button type="submit" name="action" value="submit">Enter</button>
+        </form>
+        <!-- Reset Form -->
+        <form method="POST">
+            <button type="submit" name="action" value="reset" style="width: auto; padding: 0.5em 2em; background-color: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">New set of queries</button>
+        </form>
+    </footer>
+
+
+    <small style="position: absolute; bottom: 0; width: 100%; text-align: center;">
+        <a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a>
+    </small>
+    <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('.message-box p').forEach(function(p) {
+            p.style.color = "#000000"; // Set text color to black
+        });
+    });
+    </script>
+
+</body>
+</html>
+
