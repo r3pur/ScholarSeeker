@@ -1,0 +1,160 @@
+body, html, .full-height-container, .chat-container {
+    height: 100vh; /* Set the body and html elements to occupy the full viewport height */
+    margin: 0; /* Remove default margin */
+    background-color: white;
+}
+
+.full-height-container{
+    border-radius: 150px;
+    padding-bottom: 12px
+}
+
+.chat-container {
+    margin-top: 70px; /* Increase the margin to create more space below the title */
+    padding-top: 30px;
+    padding-left: 150px;
+    padding-right: 150px;
+    width: 100%;
+    /*height: 100%; /* Make the chat container occupy the full viewport height */
+    height: calc(100vh - 70px);
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0 auto;
+    box-sizing: border-box; /* Ensure padding and border are included in the height */
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+
+     /* Set height of chat container to fill remaining space */
+    overflow-y: auto; /* Add scrollbar if content overflows */
+}
+
+#fileInput {
+    display: none;
+  }
+
+#chat-box {
+    flex-grow: 1; /* Make the chat-box expand to fill the remaining vertical space */
+    overflow-y: auto; /* Add scroll bar if content overflows */
+    border-bottom: 1px solid #ccc;
+}
+
+#user-input {
+    width: 80%;
+    padding: 5px;
+    margin-top: 10px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.You {
+    background-color: #cceeff; /* Light blue color for user messages */
+    color: #000; /* Black text color for user messages */
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px 0;
+}
+
+.ScholarSeeker {
+    background-color: #f0f0f0; /* Light gray color for bot messages */
+    color: #000; /* Black text color for bot messages */
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px 0;
+}
+
+.message {
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.title {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    text-align: center;
+    font-size: 7px; /* Decrease font size for a sleeker appearance */
+    font-weight: bold;
+    color: #333; /* Darken the color for softer appearance */
+    font-family: 'Roboto', sans-serif; /* Change font family for a modern look */
+  }
+
+  .logo {
+    width: 66px; /* Increase logo size for better visibility */
+    border-radius: 30px;
+    margin-right: 10px; /* Add margin for separation between logo and text */
+  }
+
+.sender {
+    margin-right: 5px;
+}
+
+.who {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.content {
+    margin-left: 5px;
+}
+
+.full-height-container {
+    padding-top: 80px; /* Ensure proper spacing between title and chat container */
+    box-sizing: border-box;  /*Include padding and border in the element's total width and height */
+}
+
+.input-container {
+    display: flex; /* Use flexbox layout */
+    width: 100%; /* Ensure the input container spans the entire width */
+}
+
+.input-container input {
+    flex: 1; /* Let the input box grow to fill available space */
+    border-radius: 20px; /* Apply border-radius for softer edges */
+    padding: 12px; /* Add padding for better appearance */
+    margin-right: 10px; /* Add spacing between input box and button */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+}
+
+.button {
+    margin-right: 10px;
+    border-radius: 20px; /* Apply border-radius for softer edges */
+}
+
+.input-container button {
+    border-radius: 20px; /* Apply border-radius for softer edges */
+    padding: 12px 24px; /* Add padding for better appearance */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+}
+
+#uploadButton{
+    display : block;
+}
+
+#reset {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    padding: 15px 32px; /* Padding around the text */
+    text-align: center; /* Center the text */
+    text-decoration: none; /* No underline */
+    display: inline-block; /* Allow setting dimensions */
+    font-size: 16px; /* Text size */
+    margin: 4px 2px; /* Margin around the button */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+
+
+
+
+
