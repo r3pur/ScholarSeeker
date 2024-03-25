@@ -8,6 +8,30 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    // Create the reset button element
+    var resetButton = document.createElement("button");
+    resetButton.id = "reset"; // Set the button's ID for CSS styling and event handling
+    resetButton.textContent = "Reset Chat"; // Set the button text
+
+    // Append the reset button to the body or another container element
+    document.body.appendChild(resetButton); // This could be another container element as needed
+
+    // Add click event listener for the reset button
+    resetButton.addEventListener('click', function () {
+        fetch('/reset', {
+            method: 'POST',
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.message); // Log the reset confirmation
+            var chatBox = document.getElementById('chat-box');
+            chatBox.innerHTML = ''; // Clear the chat box
+        })
+        .catch(error => console.error('Error:', error));
+    });
+});
+
 
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('uploadButton').addEventListener('click', function () {

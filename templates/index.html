@@ -1,60 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" rel="stylesheet">
-    <title>Scholar Seeker</title>
-    <style>
-        /* ChatGPT color scheme */
-        :root {
-            --primary: #2563EB; /* Adjust the primary color to ChatGPT blue */
-            --background: #F8FAFC;
-            --text-normal: #1F2937;
-            --text-muted: #64748B;
-        }
-        
-        /* Adding some custom styles for the logo */
-        .logo {
-            max-width: 150px; /* Adjust the size as necessary */
-            margin: 20px auto; /* Center the logo */
-            display: block;
-        }
-    </style>
-</head>
-<body>
-    <nav class="container-fluid">
-        <ul>
-            <li><strong>Scholar Seeker</strong></li>
-        </ul>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#" role="button">About</a></li>
-            <li><a href="/path/to/resume.csv" target="_blank">Resumes CSV</a></li>
-        </ul>
-    </nav>
-    <main class="container">
-        <img src="/Users/stevenvournazos/Desktop/SDPD/c74891d7-051a-47f2-9f56-40177300dcb0.png" alt="Scholar Seeker Logo" class="logo"> <!-- Replace YOUR_LOGO_URL with the actual URL of the logo -->
-        <div class="search-form">
-            <form method="POST">
-                <input type="text" id="query" name="query" placeholder="Enter skills, role, experience..." required>
-                <button type="submit">Search</button>
-            </form>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ScholarSeeker</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="title">
+      <img src="static/logo.png" alt="ScholarSeeker Logo" class="logo" />
+      <h1>ScholarSeeker</h1>
+    </div>
+    <div class="full-height-container">
+      <div class="chat-container">
+        <div id="chat-box">
+          <!-- Messages will be displayed here -->
         </div>
-        <section class="previous-queries">
-            <h2>Previous Queries</h2>
-            <ul>
-                <li>Query 1: Data Science</li>
-                <li>Query 2: Machine Learning Engineer</li>
-                <li>Query 3: Python Developer</li>
-            </ul>
-        </section>
-        <div class="results-container">
-            <!-- Example search results will be dynamically generated here -->
+        <div class="input-container">
+          <!-- user's query -->
+          <input
+            type="text"
+            id="user-input"
+            placeholder="Type your message here..."
+            autocomplete="on"
+          />
+          <button onclick="sendMessage()">Send</button>
+
+          <!-- File Upload -->
+          <div class="popup" id="upload">
+            <input
+              type="file"
+              id="fileInput"
+              accept=".xlsx,.xls,.txt,.pdf,.doc,.docx"
+            />
+            <button id="uploadButton">Upload File</button>
+          </div>
+
+          <!-- Thread Reset -->
+          <div class="popup">
+            <button id="reset">Reset</button>
+          </div>
         </div>
-    </main>
-    <footer class="container">
-        <small><a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a></small>
-    </footer>
-</body>
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
 </html>

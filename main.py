@@ -12,7 +12,7 @@ import mysql.connector
 from mysql.connector import Error
 from sqlalchemy import create_engine, text
 
-openai.api_key = "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"
+openai.api_key = ""
 
 df = pd.read_csv("expanded_df_10_chunks.csv")
 full_df = pd.read_csv('embedded_resume_data.csv')
@@ -75,7 +75,7 @@ def create_temp_sql_table(temp_table):
 
 def extract_keywords(user_query):
     # Initialize the OpenAI client
-    client = OpenAI(api_key="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")  # defaults to os.environ.get("OPENAI_API_KEY")
+    client = OpenAI(api_key="")  # defaults to os.environ.get("OPENAI_API_KEY")
 
     # Create an Assistant
     assistant = client.beta.assistants.create(
@@ -141,20 +141,17 @@ def extract_keywords(user_query):
     return all_messages_content
 
 def summarize_answer(user_query, result_df):
-    client = OpenAI(api_key="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")  # defaults to os.environ.get("OPENAI_API_KEY")
+    client = OpenAI(api_key="")  # defaults to os.environ.get("OPENAI_API_KEY")
 
     # Create an Assistant
     assistant = client.beta.assistants.create(
         name="mySQL Expert",
-        instructions=("You are my assistant. I need you to summarize the table that was a response to this question/user query: " + user_query
-                      + "The answer should not refer to the table but should answer the question using the table as a source. " +
-                      "Try to make the answer as insightful as possible while remaining concise and using the table as an answer to the question" +
-                      "Don't include your own advice in terms of choosing between potential candidates. Keep the answer to around" +
-                        "100 words and definitely less than 150 words. Only have a couple of lines about each candidate" + 
-                      "This table is a subset of a larger table, so don't refer to candidates as first or second candidate" +
-                      "DO NOT explicity mention a table in your response. I should not be able to tell you referenced a table from your response." +
+        instructions=("You are my assistant. I need you to summarize the following information that was a response to this question: " + user_query +
+                      "Try to make the answer as insightful as possible while remaining concise and using only given information as an answer to the question" +
+                      "Don't include your own advice in terms of choosing between potential candidates. Keep the answer to around than" +
+                      "100 words and definitely less than 150 words. Only have a couple of lines about each candidate" + 
+                      "This information is a subset of a larger group, so don't refer to candidates as first or second candidate" +
                       "Reference each applicant by their ID."),
-        tools=[{"type": "retrieval"}],
         model="gpt-4-1106-preview"
     )
         # Create a Thread
@@ -182,14 +179,12 @@ def summarize_answer(user_query, result_df):
     run = client.beta.threads.runs.create(
         thread_id=thread.id,
         assistant_id=assistant.id,
-        instructions=("You are my assistant. I need you to summarize the table that was a response to this question: " + user_query
-                      + "The answer should not refer to the table but should answer the question using the table as a source. " +
-                      "Try to make the answer as insightful as possible while remaining concise and using the table as an answer to the question" +
+        instructions=("You are my assistant. I need you to summarize the following information that was a response to this question: " + user_query +
+                      "Try to make the answer as insightful as possible while remaining concise and using only given information as an answer to the question" +
                       "Don't include your own advice in terms of choosing between potential candidates. Keep the answer to around than" +
-                        "100 words and definitely less than 150 words. Only have a couple of lines about each candidate" + 
-                      "This table is a subset of a larger table, so don't refer to candidates as first or second candidate" +
-                      "DO NOT explicity mention a table in your response. I should not be able to tell you referenced a table from your response." +
-                      "Reference each applicant by their ID.")
+                      "100 words and definitely less than 150 words. Only have a couple of lines about each candidate" + 
+                      "This information is a subset of a larger group, so don't refer to candidates as first or second candidate" +
+                      "Reference each applicant by their ID."),
     )
     print('uploaded question, waiting on response')
     # Wait for the response
