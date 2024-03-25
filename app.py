@@ -28,31 +28,14 @@ def ask():
     chat_history += [{'user': user_query}, {'scholarseeker': response}]
     queryNum += 1  # Increment queryNum by 1 for each submission
     chat_history = []  
-
     return jsonify({'message': response})
 
-@app.route('/reset', methods=['POST'])
-def reset():
+@app.route('/reset-variables', methods=['POST'])
+def reset_variables():
     global chat_history, queryNum
     chat_history = []  # Clear the chat history
     queryNum = 0  # Reset the query number to 0
-    return jsonify({'message': 'Chat history and query number have been reset.'})
-
-    # if request.method == 'POST':
-    #     action = request.form.get('action')  # Safely get the action value
-        
-    #     if action == 'submit':
-    #         user_query = request.form.get('query', '')
-    #         num_input = int(request.form.get('num', 1))  # Default to 1 if not provided
-    #         response = user_question(user_query, num_input, queryNum=queryNum)
-    #         output = response
-    #         chat_history = chat_history[-5:]  # Keep last 6 messages
-    #         chat_history += [{'user': user_query}, {'scholarseeker': response}]
-    #         queryNum += 1  # Increment queryNum by 1 for each submission
-
-    #     elif action == 'reset':
-    #         chat_history = []  # Reset chat history
-    #         queryNum = 0  # Reset queryNum to 0
+    return jsonify({'message': 'Chat history and query number have been reset.'}), 200
 
 @app.route('/upload', methods=['POST'])
 def upload():

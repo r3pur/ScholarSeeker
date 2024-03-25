@@ -12,7 +12,7 @@ import mysql.connector
 from mysql.connector import Error
 from sqlalchemy import create_engine, text
 
-openai.api_key = ""
+openai.api_key = "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"
 
 df = pd.read_csv("expanded_df_10_chunks.csv")
 full_df = pd.read_csv('embedded_resume_data.csv')
@@ -75,7 +75,7 @@ def create_temp_sql_table(temp_table):
 
 def extract_keywords(user_query):
     # Initialize the OpenAI client
-    client = OpenAI(api_key="")  # defaults to os.environ.get("OPENAI_API_KEY")
+    client = OpenAI(api_key="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")  # defaults to os.environ.get("OPENAI_API_KEY")
 
     # Create an Assistant
     assistant = client.beta.assistants.create(
@@ -141,7 +141,7 @@ def extract_keywords(user_query):
     return all_messages_content
 
 def summarize_answer(user_query, result_df):
-    client = OpenAI(api_key="")  # defaults to os.environ.get("OPENAI_API_KEY")
+    client = OpenAI(api_key="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")  # defaults to os.environ.get("OPENAI_API_KEY")
 
     # Create an Assistant
     assistant = client.beta.assistants.create(
