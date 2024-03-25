@@ -1,7 +1,7 @@
 body, html, .full-height-container, .chat-container {
     height: 100vh; /* Set the body and html elements to occupy the full viewport height */
     margin: 0; /* Remove default margin */
-    background-color: white;
+    background-color: #333232;
 }
 
 .full-height-container{
@@ -48,10 +48,11 @@ body, html, .full-height-container, .chat-container {
 button {
     margin-top: 10px;
     padding: 5px 10px;
-    background-color: #007bff;
-    color: #fff;
+    background-color: #141414;
+    color: #d3d3d3;
     border: none;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .You {
@@ -59,7 +60,8 @@ button {
     color: #000; /* Black text color for user messages */
     padding: 10px;
     border-radius: 10px;
-    margin: 5px 0;
+    margin: 2px 0;
+    font-family: 'Roboto', sans-serif;
 }
 
 .ScholarSeeker {
@@ -67,7 +69,8 @@ button {
     color: #000; /* Black text color for bot messages */
     padding: 10px;
     border-radius: 10px;
-    margin: 5px 0;
+    margin: 2px 0;
+    font-family: 'Roboto', sans-serif;
 }
 
 .message {
@@ -85,14 +88,14 @@ button {
     text-align: center;
     font-size: 7px; /* Decrease font size for a sleeker appearance */
     font-weight: bold;
-    color: #333; /* Darken the color for softer appearance */
+    color: #ffffff; /* Darken the color for softer appearance */
     font-family: 'Roboto', sans-serif; /* Change font family for a modern look */
   }
 
   .logo {
     width: 66px; /* Increase logo size for better visibility */
-    border-radius: 30px;
-    margin-right: 10px; /* Add margin for separation between logo and text */
+    border-radius: 50px;
+    margin-right: 0px; /* Add margin for separation between logo and text */
   }
 
 .sender {
@@ -141,17 +144,7 @@ button {
     display : block;
 }
 
-#reset {
-    background-color: #4CAF50; /* Green background */
-    color: white; /* White text */
-    padding: 15px 32px; /* Padding around the text */
-    text-align: center; /* Center the text */
-    text-decoration: none; /* No underline */
-    display: inline-block; /* Allow setting dimensions */
-    font-size: 16px; /* Text size */
-    margin: 4px 2px; /* Margin around the button */
-    cursor: pointer; /* Pointer cursor on hover */
-}
+
 
 
 
