@@ -1,0 +1,80 @@
+import openai
+from openai import OpenAI
+import time
+
+openai.api_key = "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"
+client = OpenAI(api_key="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")  # defaults to os.environ.get("OPENAI_API_KEY")
+
+# Create an Assistant
+assistant = client.beta.assistants.create(
+    name="mySQL Expert",
+    instructions=("""You are an AI designed to analyze user queries. 
+                 Your task is to break down the query into parts, categorize each part as either 'lexical' or 'semantic',  
+                 and identify logical connectors between parts. 
+                 Return a nested array with three elements: 
+                 1. An array of the query parts, 
+                 2. An array indicating whether each part is 'lexical' or 'semantic', 
+                 3. An array of the logical connectors ('and', 'or') between parts. 
+                 Lexical parts are those that can be directly answered with an SQL query on a table with with columns: "First Name", "Last Name", "State", "Email", "Undergrad University", "Masters University", "GPA", "Number of Professional/Research Experiences", "Number of Publications", "GRE Quantitative", "GRE Verbal", "GRE Writing". 
+                 Semantic parts require analysis beyond direct SQL queries, such as using cosine similarity. 
+                 Return only the nested array, with no additional text or explanation.
+                  The example query is : 'Candidates with Azure DevOps experience OR knowledge of Microsoft Office Suite AND a GPA above 3.8'
+                    Your output would be : [['Candidates with Azure DevOps experience', 'knowledge of Microsoft Office Suite', 'a GPA above 3.8'],
+                    ['semantic', 'semantic', 'lexical'], ['OR', 'AND']]."""),
+    model="gpt-4-1106-preview"
+)
+print('assistant created')
+    # Create a Thread
+thread = client.beta.threads.create()
+
+# Add a message to the Thread
+message = client.beta.threads.messages.create(
+    thread_id=thread.id,
+    role="user",
+    content='Find students who have published in peer-reviewed journals OR have research experience in machine learning AND have a GRE verbal score above 150.'
+)
+print('message addded to thread')
+# Create a Run
+run = client.beta.threads.runs.create(
+    thread_id=thread.id,
+    assistant_id=assistant.id,
+    instructions="The response must follow the format: [['lexical query part 1, 'semantic query part 1', 'lexical query part 2'], ['lexical', 'semantic', 'lexical'], ['and', 'or']].")
+print('waiting for response')
+# Wait for the response
+while run.status != "completed":
+    time.sleep(1)  # Sleep for 1 second between checks
+    run = client.beta.threads.runs.retrieve(
+        thread_id=thread.id,
+        run_id=run.id
+    )
+# If run completed, retrieve and print messages
+if run.status == "completed":
+    print('run complete!')
+    messages = client.beta.threads.messages.list(
+        thread_id=thread.id,
+        order="asc"
+    )
+# Initialize a string to hold the concatenated message contents
+all_messages_content = ""
+
+for message in messages:
+    if message.role == "assistant":  # Check if the message is from the assistant
+        for text_or_image in message.content:
+            if text_or_image.type == 'text':
+                # Append the message text to the all_messages_content string instead of the message object
+                all_messages_content += str(text_or_image.text.value)
+
+print(all_messages_content)
+nested_array = eval(all_messages_content)
+
+query_segments = nested_array[0]  # The first level array
+type_array = nested_array[1]  # The second level array
+logic_array = nested_array[2]
+
+print(nested_array)
+print('queries')
+print(query_segments)
+print('types')
+print(type_array)
+print('logic')
+print(logic_array)

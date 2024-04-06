@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ScholarSeeker</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="title">
+      <img src="static/logo.png" alt="ScholarSeeker Logo" class="logo" />
+      <h1>ScholarSeeker</h1>
+      
+    </div>
+    <div class="auth-button">
+      <button id="openLoginModal">Login</button>
+      <button id="openRegisterModal">Register</button>
+    </div>
+    <img id="centerImage" src="static/Slate Blue placeholder.jpg" alt="Centered Image">
+    <div class="full-height-container">
+      <div class="chat-container">
+        <div id="chat-box">
+          <!-- Messages will be displayed here -->
+        </div>
+        <div class="input-container">
+          <!-- user's query -->
+          <input
+            type="text"
+            id="user-input"
+            placeholder="Type your message here..."
+            autocomplete="on"
+          />
+          <button onclick="sendMessage()">Send</button>
+
+          <!-- File Upload -->
+          <div class="popup" id="upload">
+            <input
+              type="file"
+              id="fileInput"
+              accept=".xlsx,.xls,.txt,.pdf,.doc,.docx"
+            />
+            <button id="uploadButton">Upload File</button>
+          </div>
+
+          <!-- Thread Reset -->
+          <div class="popup">
+            <button id="reset">Reset</button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+            <!-- Login Modal -->
+    <!-- Trigger/Open Buttons -->
+
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Login</h5>
+                <button id="closeLoginModal" class="close-button">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <label for="loginUsername">Username</label>
+                    <input type="text" id="loginUsername" name="loginUsername" required>
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" name="loginPassword" required>
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Modal -->
+    <div id="registerModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Register</h5>
+                <button id="closeRegisterModal" class="close-button">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm">
+                    <label for="registerUsername">Username</label>
+                    <input type="text" id="registerUsername" name="registerUsername" required>
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" name="registerPassword" required>
+                    <button type="submit">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+  
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
