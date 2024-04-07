@@ -1,0 +1,303 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+body, html, .full-height-container, .chat-container {
+    height: 100vh;
+    margin: 0;
+    background-color: #607d8b;
+}
+
+/* Targeting the buttons by their ID */
+#openLoginModal, #openRegisterModal {
+    background-color: #a1cfe6; /* Default background color */
+    color: #000000; /* Text color */
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+#openLoginModal:hover, #openRegisterModal:hover {
+    background-color: #66beeaa1; /* Darker shade on hover */
+    cursor: pointer; /* Changes cursor to a pointer to indicate it's clickable */
+}
+
+.modal {
+    display: none; /* Make modal visible */
+    position: fixed; /* Stay in place */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: #607d8b; /* Fallback color */
+    background-color: rgba(96, 125, 139, 0.8);
+    z-index: 1000; /* Sit on top */
+  }
+  
+  .modal-content {
+    background-color: #f5ea99;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 5px solid #000000;
+    width: 50%; /* Adjust as necessary */
+    z-index: 1001;
+  }
+  
+  /* The Close Button */
+  .close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close-button:hover,
+  .close-button:focus {
+    color: black;
+    text-decoration: none;
+    
+    cursor: pointer;
+  }
+  
+
+.full-height-container{
+    position: fixed;
+    border-radius: 150px;
+    padding-bottom: 12px;   
+    left: 15%;
+    width: 85%;
+
+    box-sizing: border-box;
+   
+}
+
+.chat-container {
+    margin-top: 70px; /* Increase the margin to create more space below the title */
+    padding-top: 30px;
+    padding-left: 150px;
+    padding-right: 150px;
+    width: 100%;
+    /*height: 100%; /* Make the chat container occupy the full viewport height */
+    height: calc(100vh - 70px);
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0 auto;
+    box-sizing: border-box; /* Ensure padding and border are included in the height */
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+
+     /* Set height of chat container to fill remaining space */
+    overflow-y: auto; /* Add scrollbar if content overflows */
+    margin-left: auto;
+    
+}
+
+#fileInput {
+    display: none;
+  }
+
+#chat-box {
+    flex-grow: 1; /* Make the chat-box expand to fill the remaining vertical space */
+    overflow-y: auto; /* Add scroll bar if content overflows */
+    border-bottom: 1px solid #ccc;
+}
+
+#user-input {
+    width: 100%;
+    padding: 5px;
+    margin-top: 10px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #a1cfe6; /* Default background color */
+    color: #000000; /* Text color */
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#button.hover{
+    margin-top: 10px;
+    padding: 5px 10px;
+    color: #000000; /* Text color */
+    border: none;
+    font-weight: bold;
+    background-color: #66beeaa1; /* Darker shade on hover */
+    cursor: pointer;
+}
+
+.You {
+    background-color: #cceeff; /* Light blue color for user messages */
+    color: #465c67; /* Black text color for user messages */
+    padding: 10px;
+    border-radius: 10px;
+    margin: 2px 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.ScholarSeeker {
+    background-color: #f0f0f0; /* Light gray color for bot messages */
+    color: #465c67; /* Black text color for bot messages */
+    padding: 10px;
+    border-radius: 10px;
+    margin: 2px 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.message {
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.title {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    text-align: center;
+    font-size: 7px; /* Decrease font size for a sleeker appearance */
+    font-weight: bold;
+    color: #ffffff; /* Darken the color for softer appearance */
+    font-family: 'Montserrat', sans-serif; /* Change font family for a modern look */
+  }
+
+  .logo {
+    width: 66px; /* Increase logo size for better visibility */
+    border-radius: 50px;
+    margin-right: 0px; /* Add margin for separation between logo and text */
+  }
+
+.sender {
+    margin-right: 5px;
+}
+
+.who {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.content {
+    margin-left: 5px;
+}
+
+.full-height-container {
+    padding-top: 80px; /* Ensure proper spacing between title and chat container */
+    box-sizing: border-box;  /*Include padding and border in the element's total width and height */
+}
+
+.input-container {
+    display: flex; /* Use flexbox layout */
+    width: 100%; /* Ensure the input container spans the entire width */
+    z-index: 5;
+}
+
+.input-container input {
+    flex: 1; /* Let the input box grow to fill available space */
+    border-radius: 20px; /* Apply border-radius for softer edges */
+    padding: 12px; /* Add padding for better appearance */
+    margin-right: 10px; /* Add spacing between input box and button */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+}
+
+.button {
+    margin-right: 10px;
+    border-radius: 20px; /* Apply border-radius for softer edges */
+}
+
+.input-container button {
+    border-radius: 20px; /* Apply border-radius for softer edges */
+    padding: 12px 24px; /* Add padding for better appearance */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+}
+
+#uploadButton{
+    display : block;
+}
+
+
+.auth-button {
+    position: fixed;
+    top: 10px; /* Adjust this value to align with your title or as needed */
+    right: 10px; /* Distance from the right edge of the viewport */
+    z-index: 9999; /* Ensure it stays on top of other content */
+    display: flex;
+    gap: 10px; /* Adjust the gap between the buttons as needed */
+    font-size: 14px; /* Adjust font size as needed */
+    font-family: 'Montserrat', sans-serif; /* Keep font consistent with the rest of your design */
+  }
+
+#arrayContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #2d5e7a; /* Example background color */
+    height: 100%;
+    overflow: auto;
+    width: 200px;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    overflow-y: auto; /* Allow scrolling within the container */
+    z-index: 2;
+    position: relative;
+}
+
+
+.array-item {
+    border: 5px solid black; /* Add a black border */
+    margin: 0px 0; /* Add some space between items */
+    padding: 5px; /* Add some padding inside the borders */
+    background-color: #2d5e7a;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    width: 100%; /* Make the item's width fill the container */
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    z-index: 2;
+    position: relative;
+    color: #f5ea99;
+    word-wrap: break-word; /* This is now recommended to be used as 'overflow-wrap' */
+    overflow-wrap: break-word;
+}
+
+img#centerImage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the image */
+    z-index: 900;
+}
+
+
+.custom-table-style {
+    width: 100%;
+    border-collapse: collapse; /* Ensures that the border lines between cells are merged */
+    font-family: 'Montserrat', sans-serif; /* Sets the font for everything in the table */
+    background-color: #f0f0f0; /* A dark blue background color for the table */
+    color: #2d5e7a; /* Sets the font color for everything in the table to a light yellow */
+}
+
+.custom-table-style th, .custom-table-style td {
+    border: 2.5px solid #2d5e7a; /* Makes the lines that divide the table white */
+    padding: 8px; /* Padding inside each cell */
+    text-align: left; /* Aligns text to the left */
+}
+
+.custom-table-style tr:nth-child(even) {
+    background-color: #f0f0f0; /* Even rows will have the same dark blue background as the table */
+}
+
+.custom-table-style tr:nth-child(odd) {
+    background-color: #f0f0f0a9; /* Odd rows will have a slightly darker shade than the even rows for contrast */
+}
+
+.custom-table-style th {
+    background-color: #f0f0f0a9; /* A darker shade for the table headers */
+    color: #1e485a; /* Sets the font color for headers to white for better contrast */
+}
+
+

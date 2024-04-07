@@ -1,0 +1,11 @@
+import pandas as pd
+import mysql.connector
+from mysql.connector import Error
+from sqlalchemy import create_engine, text, exc
+from main import *
+
+df = pd.read_csv("chunked_phd_resumes_500.csv")
+print('uh')
+df.rename(columns={'Applicant_ID': 'ID'}, inplace=True)
+print('rename W')
+create_sql_table(df)

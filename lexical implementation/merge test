@@ -1,0 +1,5 @@
+import pandas as pd
+from main import *
+
+chunks = pd.read_csv('chunked_phd_resumes_500.csv')
+print(chunks.head(15))

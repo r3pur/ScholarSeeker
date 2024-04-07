@@ -1,0 +1,17 @@
+from main import *
+mysql_user = 'admin'
+mysql_password = 'Admin123'
+mysql_host = "ytdemo.c9m0uu86c4k4.us-east-1.rds.amazonaws.com"  # or your database host
+mysql_database = 'yt_demo'
+print('creating engine')
+# Create the SQLAlchemy engine
+engine = create_engine(f'mysql+mysqlconnector://{mysql_user}:{mysql_password}@{mysql_host}/{mysql_database}')
+from sqlalchemy import create_engine, text, exc
+
+# Assuming mysql_user, mysql_password, mysql_host, mysql_database, username, and password are defined somewhere
+with engine.connect() as connection:
+    # Create the table if it doesn't exist
+    connection.execute(text("""
+    DROP TABLE credentials;
+
+    """))
